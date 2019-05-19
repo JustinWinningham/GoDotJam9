@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Art/Background/bg_heck.png" type="Texture" id=1]
-[ext_resource path="res://Art/Background/bg_heck_paralax.png" type="Texture" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
-[ext_resource path="res://Scripts/ButtonChangeScene.gd" type="Script" id=4]
+[ext_resource path="res://Art/UI/Title_screen.png" type="Texture" id=1]
+[ext_resource path="res://Art/UI/btn_play.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/ButtonChangeScene.gd" type="Script" id=3]
+[ext_resource path="res://Art/UI/btn_quit.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/QuitButton.gd" type="Script" id=5]
 
 [node name="MainMenu" type="Control"]
@@ -13,65 +13,31 @@ margin_left = -0.150208
 margin_right = -0.150208
 
 [node name="Background" type="Sprite" parent="."]
-scale = Vector2( 2, 2 )
+position = Vector2( -1, 1 )
 texture = ExtResource( 1 )
 centered = false
-
-[node name="Background_Spires" type="Sprite" parent="."]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 2 )
-centered = false
-
-[node name="GameName" type="Sprite" parent="."]
-position = Vector2( 631.214, 219.02 )
-texture = ExtResource( 3 )
 
 [node name="PlayButton" type="Button" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -152.0
-margin_top = -40.0
-margin_right = 152.0
-margin_bottom = 40.0
-text = "Play"
-script = ExtResource( 4 )
-
-[node name="ControlsButton" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -150.947
-margin_top = 68.421
-margin_right = 153.053
-margin_bottom = 148.421
-text = "Settings, Help, and Keybinds"
-script = ExtResource( 4 )
-scenePath = "res://Scenes/KeybindsScene.tscn"
-
-[node name="TestLvlButton" type="Button" parent="."]
-margin_left = 50.0
-margin_top = 99.0
-margin_right = 191.0
-margin_bottom = 166.0
-text = "Test Level"
-script = ExtResource( 4 )
-scenePath = "res://Scenes/Test_Level.tscn"
+margin_left = -77.0
+margin_top = 77.0
+margin_right = 31.0
+margin_bottom = 115.0
+rect_scale = Vector2( 1.5, 1.5 )
+icon = ExtResource( 2 )
+flat = true
+script = ExtResource( 3 )
+scenePath = "res://Scenes/MainLevel.tscn"
 
 [node name="QuitButton" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -110.0
-margin_bottom = 45.0
-text = "Quit"
+margin_left = -108.0
+margin_bottom = 38.0
+icon = ExtResource( 4 )
+flat = true
 script = ExtResource( 5 )
-
-[node name="BestTimeLabel" type="Label" parent="."]
-margin_left = 413.368
-margin_top = 67.9474
-margin_right = 561.368
-margin_bottom = 94.9474
-text = "Fastest Ascention time: 00:00"
 

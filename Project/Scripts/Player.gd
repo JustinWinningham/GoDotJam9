@@ -30,34 +30,34 @@ func _physics_process(delta):
 	########### Right Movement Handling ###########
 	
 	if Input.is_action_pressed("ui_right"):
-		#$Sprite.set_speed_scale(1) # reset our run animation speed to default
+		$Sprite.set_speed_scale(1) # reset our run animation speed to default
 		pass
 		motion.x = min(motion.x + ACCELERATION, MAX_SPEED) # Add movement force
 		if motion.x < 0: # If we are moving left, but pressing right, Skid.
 			#$Sprite.play("skid")
 			pass
 		elif motion.x < MAX_SPEED: # If we are moving right, and pressing right, flip the sprite right, and play Run animation
-			#$Sprite.flip_h = false
-			#$Sprite.play("run")
+			$Sprite.flip_h = false
+			$Sprite.play("Run")
 			pass
 		else: # If we are at max speed, play Sprint animation
-			#$Sprite.play("sprint")
+			$Sprite.play("Sprint")
 			pass
 	
 	########### Left Movement Handling ###########
 	
 	elif Input.is_action_pressed("ui_left"):
-		#$Sprite.set_speed_scale(1) # reset our run animation speed to default
+		$Sprite.set_speed_scale(1) # reset our run animation speed to default
 		motion.x = max(motion.x - ACCELERATION, -MAX_SPEED) # Add movement force
 		if motion.x > 0:
 			#$Sprite.play("skid") # If we are moving right, but pressing left, Skid.
 			pass
 		elif motion.x > -MAX_SPEED:
-			#$Sprite.flip_h = true # If we are moving left, and pressing left, flip the sprite left, and play Run animation
-			#$Sprite.play("run")
+			$Sprite.flip_h = true # If we are moving left, and pressing left, flip the sprite left, and play Run animation
+			$Sprite.play("Run")
 			pass
 		else:
-			#$Sprite.play("sprint")
+			$Sprite.play("Sprint")
 			pass
 	
 	########### Non-Input Movement Handling ###########
@@ -68,20 +68,21 @@ func _physics_process(delta):
 		##### Walk Animation Handling #####
 		
 		if motion.x < 70 and motion.x > -70: # If the player is moving slowly, slow the run scale to half (walking)
-			#$Sprite.set_speed_scale(0.5)
+			$Sprite.set_speed_scale(0.5)
 			pass
 			if motion.x < 20 and motion.x > -20: # again, even slower walking speed check
-				#$Sprite.set_speed_scale(0.2)
+				$Sprite.set_speed_scale(0.2)
 				pass
 		
 		##### Idle Animation Handling #####
 		
 		if motion.x < 5 and motion.x > -5: # If player is barely moving, force idle
-			#$Sprite.play("idle")
-			#$Sprite.set_speed_scale(1)
+			$Sprite.play("Idle")
+			$Sprite.set_speed_scale(1)
 			motion.x = 0
 		else: #TODO may need to add a handler to continue fall animation when airborne
-			#$Sprite.play("skid") # if player is moving quickly, but not inpuiting anything, Skid
+			#$Sprite.play("Skid") # if player is moving quickly, but not inpuiting anything, Skid
+			# This used to be Skid
 			pass
 		
 		##### Floor handling #####
@@ -98,7 +99,7 @@ func _physics_process(delta):
 	
 	elif is_on_wall():
 		flump_window = 0 # Reset our flump window
-		#$Sprite.play("hang") # We are on the wall, so set state and animation to say so
+		$Sprite.play("Hang") # We are on the wall, so set state and animation to say so
 		was_on_wall_last_frame = true
 		if walljump_window > WALLJUMP_WINDOW_MAX / 2: # We only want the slide to occur if we are above 50% grip
 			motion.y = clamp(motion.y, -10, 10) # Slow the player when they hang on the wall
@@ -107,14 +108,14 @@ func _physics_process(delta):
 		
 		if Input.is_action_just_pressed("Jump") and Input.is_action_pressed("ui_left") and walljump_window > 0:
 			#$"/root/GLOBAL".num_walljumps += 1
-			#$Sprite.flip_h = false
+			$Sprite.flip_h = false
 			motion.x = MAX_SPEED
 			motion.y = JUMP_FORCE
 #				walljump_window -= 20 # Uncomment if we want to have walljumps reduce grip
 		
 		elif Input.is_action_just_pressed("Jump") and Input.is_action_pressed("ui_right") and walljump_window > 0:
 			#$"/root/GLOBAL".num_walljumps += 1
-			#$Sprite.flip_h = true
+			$Sprite.flip_h = true
 			motion.x = -MAX_SPEED
 			motion.y = JUMP_FORCE
 #				walljump_window -= 20 # Uncomment if we want to have walljumps reduce grip
@@ -129,10 +130,10 @@ func _physics_process(delta):
 	# Basically meaning that we are airborne
 	else:
 		if motion.y < 0: # If we are rising
-			#$Sprite.play("jump")
+			$Sprite.play("Jump")
 			pass
 		else: # If we are falling
-			#$Sprite.play("fall")
+			$Sprite.play("Fall")
 			pass
 		was_airborne_last_frame = true
 		flump_window -= 1 # keep ticking our flump window

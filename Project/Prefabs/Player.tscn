@@ -1,20 +1,64 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Art/Character/character_idle1.png" type="Texture" id=2]
+[ext_resource path="res://Art/Character/character_idle2.png" type="Texture" id=3]
+[ext_resource path="res://Art/Character/character_idle3.png" type="Texture" id=4]
+[ext_resource path="res://Art/Character/character_idle4.png" type="Texture" id=5]
+[ext_resource path="res://Art/Character/character_jump2.png" type="Texture" id=6]
+[ext_resource path="res://Art/Character/character_run1.png" type="Texture" id=7]
+[ext_resource path="res://Art/Character/character_run2.png" type="Texture" id=8]
+[ext_resource path="res://Art/Character/character_hang.png" type="Texture" id=9]
+[ext_resource path="res://Art/Character/character_jump1.png" type="Texture" id=10]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 15.3418
-height = 27.954
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "Fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "Run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "Hang",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "Sprint",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 9, 11 )
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( -3.67546, 0 )
 script = ExtResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.5, 1 )
-texture = ExtResource( 2 )
+[node name="Sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "Run"
+frame = 1
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+visible = false
+position = Vector2( -1.32454, 1 )
+shape = SubResource( 2 )
 

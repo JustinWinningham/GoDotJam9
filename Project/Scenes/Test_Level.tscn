@@ -60,6 +60,7 @@ __meta__ = {
 }
 theText = "Its just a wall."
 readTime = 240
+isGod = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialougeTriggers/DialougeTrigger_1"]
 position = Vector2( -129.221, -60.3549 )

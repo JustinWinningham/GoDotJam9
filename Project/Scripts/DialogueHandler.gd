@@ -1,5 +1,9 @@
 extends Control
 
+
+var devil = preload("res://Art/devil01.png")
+var god = preload("res://Art/god01.png")
+
 var theText = ""
 var processing = false
 var textLen = 0
@@ -25,10 +29,14 @@ func _process(delta):
 				readTime = 180
 		
 	pass
-func _fire(strang, readT):
+func _fire(strang, readT, isGod):
 	if processing:
 		return
 	else:
+		if isGod:
+			$Sprite.texture = god
+		else:
+			$Sprite.texture = devil
 		textLen = strang.length()
 		theText = strang
 		readTime = readT
